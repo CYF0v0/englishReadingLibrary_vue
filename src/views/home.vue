@@ -13,8 +13,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import { useUserStore } from '../store/user'
 
 const router = useRouter()
+const userStore = useUserStore()
 const users = [{
   id: 1,
   username: 'admin',
@@ -51,8 +53,10 @@ const handleLogin = () => {
     }
   });
   if (isRight) {
-    isLogin.value = true;
-    localStorage.setItem('userInfo', JSON.stringify(loginInfo.value))
+    userStore.isLogin = true;
+    userStore.loginInfo = loginInfo.value;
+    // isLogin.value = true;
+    // localStorage.setItem('userInfo', JSON.stringify(loginInfo.value))
     ElMessage.success('登录成功')
     router.push('/about')
   } else {

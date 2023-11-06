@@ -11,16 +11,20 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessageBox } from 'element-plus'
+import { useUserStore } from '../store/user'
 
 const router = useRouter()
+const userStore = useUserStore()
 // 是否登录
 const isLogin = ref(false);
 const loginInfo = ref({});
-const userInfo = localStorage.getItem('userInfo');
-if (userInfo) {
-  isLogin.value = true;
-  loginInfo.value = JSON.parse(userInfo);
-}
+isLogin.value = userStore.isLogin;
+loginInfo.value = userStore.loginInfo;
+// const userInfo = localStorage.getItem('userInfo');
+// if (userInfo) {
+//   isLogin.value = true;
+//   loginInfo.value = JSON.parse(userInfo);
+// }
 const handleExit = () => {
   ElMessageBox.confirm(
     '确定要退出吗？',
@@ -32,9 +36,9 @@ const handleExit = () => {
     }
   )
     .then(() => {
-      isLogin.value = false;
+      userStore.isLogin = false;
       // 清空当前用户
-      localStorage.removeItem('userInfo');
+      userStore.loginInfo = {};
       router.push('/')
     })
     .catch(() => {

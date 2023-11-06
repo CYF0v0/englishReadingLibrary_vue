@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import './style.css'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 
 // 2. 定义一些路由
@@ -27,6 +28,7 @@ const app = createApp(App)
 //确保 _use_ 路由实例使
 //整个应用支持路由。
 app.use(router)
+app.use(createPinia())
 app.use(ElementPlus)
 app.mount('#app')
 
