@@ -4,14 +4,14 @@ import './style.css'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import { createPinia } from 'pinia'
-import App from './App.vue'
+import App from '@/App.vue'
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes = [
-  { path: '/', component: () => import('./views/home.vue') },
-  { path: '/about', component: () => import('./views/about.vue') },
+  { path: '/', component: () => import('@/views/home.vue') },
+  { path: '/about', component: () => import('@/views/about.vue') },
 ]
 
 // 3. 创建路由实例并传递 `routes` 配置
