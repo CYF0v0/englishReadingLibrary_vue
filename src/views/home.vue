@@ -14,6 +14,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/store/user'
+import http from '@/utils/request'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -36,6 +37,10 @@ const formData = ref({
 const isLogin = ref(false);
 const loginInfo = ref({});
 const handleLogin = () => {
+  http.post('/api/login', {
+    data: {}
+  })
+  return
   if (!formData.value.username) {
     ElMessage.error('请输入用户名')
     return
