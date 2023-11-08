@@ -37,10 +37,6 @@ const formData = ref({
 const isLogin = ref(false);
 const loginInfo = ref({});
 const handleLogin = () => {
-  http.post('/api/login', {
-    data: {}
-  })
-  return
   if (!formData.value.username) {
     ElMessage.error('请输入用户名')
     return
@@ -49,24 +45,42 @@ const handleLogin = () => {
     ElMessage.error('请输入密码')
     return
   }
-  let isRight = false;
-  users.forEach((element) => {
-    if (formData.value.username == element.username && formData.value.password ==element.password) {
-      isRight = true;
-      loginInfo.value = element;
-      return false;
+  http.post('/api/login', {
+    data: {
+      username: formData.value.username,
+      password: formData.value.password,
     }
-  });
-  if (isRight) {
-    userStore.isLogin = true;
-    userStore.loginInfo = loginInfo.value;
-    // isLogin.value = true;
-    // localStorage.setItem('userInfo', JSON.stringify(loginInfo.value))
-    ElMessage.success('登录成功')
-    router.push('/about')
-  } else {
+  }).then((response) => {
+    const data = response.data
+    if (data.code == 200) {
+      userStore.isLogin = true
+      userStore.loginInfo = data.data
+      ElMessage.success('登录成功')
+      router.push('/about')
+    } else {
+      ElMessage.error(data.message)
+    }
+  }).catch((error) => {
     ElMessage.error('用户名或密码不正确')
-  }
+  })
+  // let isRight = false;
+  // users.forEach((element) => {
+  //   if (formData.value.username == element.username && formData.value.password ==element.password) {
+  //     isRight = true;
+  //     loginInfo.value = element;
+  //     return false;
+  //   }
+  // });
+  // if (isRight) {
+  //   userStore.isLogin = true;
+  //   userStore.loginInfo = loginInfo.value;
+  //   // isLogin.value = true;
+  //   // localStorage.setItem('userInfo', JSON.stringify(loginInfo.value))
+  //   ElMessage.success('登录成功')
+  //   router.push('/about')
+  // } else {
+  //   ElMessage.error('用户名或密码不正确')
+  // }
 };
 
 const userInfo = localStorage.getItem('userInfo');
