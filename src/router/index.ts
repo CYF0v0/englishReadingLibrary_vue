@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router"
+import { useUserStore } from "@/store/user"
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -17,4 +18,21 @@ const router = createRouter({
   routes, // `routes: routes` 的缩写
 })
 
-export default router;
+const loginRoutePath = '/'
+
+router.beforeEach(async to => {
+  const userStore = useUserStore()
+  // 未登录的
+  if (!userStore.isLogin) {
+    console.log(to.fullPath)
+    if (to.fullPath !== loginRoutePath) {
+      // 其他路由一律跳转到登录页
+      return {
+        path: loginRoutePath,
+        replace: true,
+      }
+    }
+  }
+})
+
+export default router
