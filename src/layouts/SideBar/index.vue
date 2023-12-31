@@ -1,7 +1,7 @@
 <template>
   <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-    <el-radio-button :label="false">expand</el-radio-button>
-    <el-radio-button :label="true">collapse</el-radio-button>
+    <el-radio-button :label="false">展开</el-radio-button>
+    <el-radio-button :label="true">折叠</el-radio-button>
   </el-radio-group>
   <el-menu
     default-active="2"
@@ -54,7 +54,7 @@ import {
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const isCollapse = ref(true)
+const isCollapse = ref(false)
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }

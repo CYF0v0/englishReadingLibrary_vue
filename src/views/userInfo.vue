@@ -5,7 +5,7 @@
   <div v-else>
     <el-form :inline="true" :model="loginInfo" class="demo-form-inline">
       <el-form-item label="用户名">
-        <el-input v-model="loginInfo.username" placeholder="用户名" clearable />
+        <el-input v-model="loginInfo.username" placeholder="用户名" />
       </el-form-item>
     </el-form>
   </div>
