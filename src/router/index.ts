@@ -1,12 +1,39 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import { useUserStore } from "@/store/user"
+import Layout from '@/layouts/index.vue' 
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes = [
   { path: '/', component: () => import('@/views/home.vue') },
-  { path: '/about', component: () => import('@/views/about.vue') },
+  { 
+    path: '/main', 
+    component: Layout,
+    redirect: '/main/index',
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/main.vue'),
+        meta: {
+          title: '首页',
+          icon: 'HomeFilled',
+          affix: true,
+        },
+      },
+      {
+        path: 'userInfo',
+        name: 'UserInfo',
+        component: () => import('@/views/userInfo.vue'),
+        meta: {
+          title: '个人中心',
+          icon: 'HomeFilled',
+          affix: true,
+        },
+      },
+    ], 
+  },
 ]
 
 // 3. 创建路由实例并传递 `routes` 配置

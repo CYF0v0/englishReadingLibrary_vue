@@ -56,7 +56,7 @@ const handleLogin = () => {
       userStore.isLogin = true
       userStore.loginInfo = data.data
       ElMessage.success('登录成功')
-      router.push('/about')
+      router.push('/main')
     } else {
       ElMessage.error(data.message)
     }
