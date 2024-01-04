@@ -3,7 +3,7 @@
     暂未登录 <a href="/">去登录</a>
   </div>
   <div v-else>
-      欢迎，{{ loginInfo.type }} {{ loginInfo.username }} <el-button type="success" @click="handleExit">退出登录</el-button>
+      欢迎使用后台管理系统，{{ loginInfo.type }} {{ loginInfo.username }}
   </div>
 </template>
 
