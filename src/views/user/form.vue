@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits, ref, reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import dayjs from 'dayjs'
 
