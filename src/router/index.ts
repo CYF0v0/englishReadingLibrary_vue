@@ -32,6 +32,16 @@ const routes = [
           affix: true,
         },
       },
+      {
+        path: 'userList',
+        name: 'userList',
+        component: () => import('@/views/user/index.vue'),
+        meta: {
+          title: '用户管理',
+          icon: 'UserFilled',
+          affix: true,
+        },
+      },
     ], 
   },
 ]

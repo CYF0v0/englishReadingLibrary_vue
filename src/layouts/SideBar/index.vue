@@ -14,6 +14,10 @@
       <el-icon><setting /></el-icon>
       <template #title>个人中心</template>
     </el-menu-item>
+    <el-menu-item index="5" @click="toPage('/main/userList')">
+      <el-icon><UserFilled /></el-icon>
+      <template #title>用户管理</template>
+    </el-menu-item>
   </el-menu>
 </template>
 
@@ -22,6 +26,7 @@ import { computed } from 'vue'
 import {
   Document,
   Setting,
+  UserFilled
 } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { useSettingStore } from '@/store/setting'
