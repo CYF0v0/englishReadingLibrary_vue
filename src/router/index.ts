@@ -5,7 +5,7 @@ import Layout from '@/layouts/index.vue'
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
-const mainRoutes = [
+export const mainRoutes = [
   { 
     path: '/main', 
     component: Layout,
@@ -27,7 +27,7 @@ const mainRoutes = [
         component: () => import('@/views/userInfo.vue'),
         meta: {
           title: '个人中心',
-          icon: 'HomeFilled',
+          icon: 'Setting',
           affix: true,
         },
       },
