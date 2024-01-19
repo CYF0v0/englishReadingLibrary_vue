@@ -49,9 +49,7 @@ const handleExit = () => {
   if (!result) {
     return
   }
-  userStore.isLogin = false;
-  // 清空当前用户
-  userStore.loginInfo = {};
+  userStore.logout();
   router.push('/')
 }
 </script>

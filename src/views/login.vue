@@ -53,8 +53,7 @@ const handleLogin = () => {
   }).then((response) => {
     const data = response.data
     if (data.code == 200) {
-      userStore.isLogin = true
-      userStore.loginInfo = data.data
+      userStore.login(data.data)
       ElMessage.success('登录成功')
       router.push('/main')
     } else {
@@ -63,24 +62,6 @@ const handleLogin = () => {
   }).catch((error) => {
     ElMessage.error('用户名或密码不正确')
   })
-  // let isRight = false;
-  // users.forEach((element) => {
-  //   if (formData.value.username == element.username && formData.value.password ==element.password) {
-  //     isRight = true;
-  //     loginInfo.value = element;
-  //     return false;
-  //   }
-  // });
-  // if (isRight) {
-  //   userStore.isLogin = true;
-  //   userStore.loginInfo = loginInfo.value;
-  //   // isLogin.value = true;
-  //   // localStorage.setItem('userInfo', JSON.stringify(loginInfo.value))
-  //   ElMessage.success('登录成功')
-  //   router.push('/about')
-  // } else {
-  //   ElMessage.error('用户名或密码不正确')
-  // }
 };
 
 const userInfo = localStorage.getItem('userInfo');
