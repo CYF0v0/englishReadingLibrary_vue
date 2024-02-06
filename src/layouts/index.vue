@@ -20,6 +20,22 @@
         </div>
       </div>
       <div class="right-content">
+        <div class="breadcrumb">
+          <el-breadcrumb separator="/">
+            <el-breadcrumb-item
+              :to="{ path: '/main/index' }"
+            >
+              首页
+            </el-breadcrumb-item>
+            <el-breadcrumb-item
+              v-for="(item, index) in getBreadcrumb"
+              :to="{ path: item.path }"
+              :key="index"
+            >
+              {{ item.meta.title }}
+            </el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
         <router-view></router-view>
       </div>
     </div>
@@ -27,14 +43,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import SideBar from '@/layouts/SideBar/index.vue'
 import { useSettingStore } from '@/store/setting'
 import { useUserStore } from '../store/user'
 import { Fold, Expand } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 const userStore = useUserStore()
 const settingStore = useSettingStore()
 const isCollapse = ref(false)
@@ -43,7 +60,13 @@ const handleCollapse = (value) => {
   settingStore.isCollapse = value
 }
 const loginInfo = userStore.loginInfo
-
+const getBreadcrumb = computed(() => {
+  let matched = route.matched.filter(item => item.meta && item.meta.title)
+  if (matched.length == 1 && matched[0].path == '/main/index') {
+    return []
+  }
+  return matched
+})
 const handleExit = () => {
   let result = confirm('确定要退出吗？')
   if (!result) {
@@ -87,7 +110,10 @@ const handleExit = () => {
   height: 100vh;
   background-color: #fff;
   margin: 10px;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
+}
+.breadcrumb {
+  margin-bottom: 10px;
 }
 </style>
