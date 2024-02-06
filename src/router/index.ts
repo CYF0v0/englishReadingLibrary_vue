@@ -54,7 +54,7 @@ export const staticRoutes = [
   {
     path: '/:pathMatch(.*)',
     name: '404',
-    component: () => import(/* webpackChunkName: "exception" */ '@/views/exception/404.vue'),
+    component: () => import('@/views/exception/404.vue'),
   },
 ];
 
