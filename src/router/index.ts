@@ -13,7 +13,7 @@ export const mainRoutes = [
     children: [
       {
         path: 'index',
-        name: 'Index',
+        name: 'index',
         component: () => import('@/views/main.vue'),
         meta: {
           title: '首页',
@@ -23,7 +23,7 @@ export const mainRoutes = [
       },
       {
         path: 'userInfo',
-        name: 'UserInfo',
+        name: 'userInfo',
         component: () => import('@/views/userInfo.vue'),
         meta: {
           title: '个人中心',

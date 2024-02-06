@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    :default-active="route.path.split('/')[2]"
+    :default-active="route.name"
     :router="true"
     class="el-menu-vertical-demo"
     :collapse="isCollapse"
@@ -8,7 +8,7 @@
     @close="handleClose"
   >
     <el-menu-item 
-      :index="item.path"
+      :index="item.name"
       v-for="(item, index) in mainRoutes[0].children"
       :key="index"
     >
