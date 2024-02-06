@@ -14,7 +14,7 @@
     >
       <template #title>
         <el-icon :size="20">
-          <component :is="comArr[item.meta.icon]" />
+          <component v-if="item.meta.icon" :is="findCom(item.meta.icon)?.com" />
         </el-icon>
         {{ item.meta.title }}
       </template>
@@ -41,11 +41,31 @@ import { HomeFilled, Setting, UserFilled } from '@element-plus/icons-vue'
 import { useSettingStore } from '@/store/setting'
 import { mainRoutes } from '@/router/index'
 
-const comArr = reactive({
-  Setting: markRaw(Setting),
-  HomeFilled: markRaw(HomeFilled),
-  UserFilled: markRaw(UserFilled),
-})
+interface ComType {
+  name: string;
+  com: Object;
+}
+const comArr: ComType[] = reactive([
+  {
+    name: 'Setting',
+    com: markRaw(Setting),
+  },
+  {
+    name: 'HomeFilled',
+    com: markRaw(HomeFilled),
+  },
+  {
+    name: 'UserFilled',
+    com: markRaw(UserFilled),
+  }
+])
+const findCom = (name: string) => {
+  const findArr = comArr.filter((item) => item.name == name)
+  if (findArr.length > 0) {
+    return findArr[0]
+  }
+  return null
+}
 const settingStore = useSettingStore()
 const router = useRouter()
 const isCollapse = computed(() => settingStore.isCollapse)
