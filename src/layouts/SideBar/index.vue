@@ -1,6 +1,7 @@
 <template>
   <el-menu
-    default-active="2"
+    :default-active="route.path.split('/')[2]"
+    :router="true"
     class="el-menu-vertical-demo"
     :collapse="isCollapse"
     @open="handleOpen"
@@ -8,7 +9,6 @@
   >
     <el-menu-item 
       :index="item.path"
-      @click="toPage(item.path)"
       v-for="(item, index) in mainRoutes[0].children"
       :key="index"
     >
@@ -36,7 +36,7 @@
 
 <script lang="ts" setup>
 import { computed, reactive, markRaw } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { HomeFilled, Setting, UserFilled } from '@element-plus/icons-vue'
 import { useSettingStore } from '@/store/setting'
 import { mainRoutes } from '@/router/index'
@@ -67,7 +67,6 @@ const findCom = (name: string) => {
   return null
 }
 const settingStore = useSettingStore()
-const router = useRouter()
 const isCollapse = computed(() => settingStore.isCollapse)
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -75,9 +74,7 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-const toPage = (path: string) => {
-  router.push(path)
-}
+const route = useRoute()
 </script>
 
 <style>
