@@ -36,7 +36,7 @@ const ok = (data: any) => {
 
 export default defineMock([
   {
-    url: '/api/login',
+    url: '/api/login1',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -60,7 +60,7 @@ export default defineMock([
         }
       });
       if (!isRight) {
-        return error('用户名或密码输入不正确') 
+        return error('用户名或密码输入不正确')
       }
       return ok(currentUser)
     }

@@ -37,9 +37,9 @@
 <script lang="ts" setup>
 import { computed, reactive, markRaw } from 'vue'
 import { useRoute } from 'vue-router'
-import { HomeFilled, Setting, UserFilled } from '@element-plus/icons-vue'
+import { HomeFilled, Setting, UserFilled ,Reading,Files,Tickets} from '@element-plus/icons-vue'
 import { useSettingStore } from '@/store/setting'
-import { mainRoutes } from '@/router/index'
+import { mainRoutes } from '@/router'
 
 interface ComType {
   name: string;
@@ -57,6 +57,18 @@ const comArr: ComType[] = reactive([
   {
     name: 'UserFilled',
     com: markRaw(UserFilled),
+  },
+  {
+  name: 'Reading',
+    com: markRaw(Reading),
+  },
+  {
+    name: 'Files',
+    com: markRaw(Files),
+  },
+  {
+    name: 'Tickets',
+    com: markRaw(Tickets),
   }
 ])
 const findCom = (name: string) => {

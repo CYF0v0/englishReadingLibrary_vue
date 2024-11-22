@@ -5,8 +5,10 @@ import Layout from '@/layouts/index.vue'
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
+// @ts-ignore
+// @ts-ignore
 export const mainRoutes = [
-  { 
+  {
     path: '/main', 
     component: Layout,
     redirect: '/main/index',
@@ -41,7 +43,37 @@ export const mainRoutes = [
           affix: true,
         },
       },
-    ], 
+      {
+        path: 'course',
+        name: 'course',
+        component: () => import('@/views/course.vue'),
+        meta: {
+          title: '课程',
+          icon: 'Reading',
+          affix: true,
+        },
+      },
+      {
+        path: 'source',
+        name: 'source',
+        component: () => import('@/views/source.vue'),
+        meta: {
+          title: '资源',
+          icon: 'Files',
+          affix: true,
+        },
+      },
+      {
+        path: 'selectedCourse',
+        name: 'selectedCourse',
+        component: () => import('@/views/enrollCourse.vue'),
+        meta: {
+          title: '已选选课',
+          icon: 'Tickets',
+          affix: true,
+        },
+      },
+    ],
   },
 ]
 
@@ -50,12 +82,14 @@ export const staticRoutes = [
     path: '/', 
     name: 'login',
     component: () => import('@/views/login.vue'),
+    // name: 'course',
+    // component: () => import('@/views/course.vue'),
   },
-  {
-    path: '/:pathMatch(.*)',
-    name: '404',
-    component: () => import('@/views/exception/404.vue'),
-  },
+  // {
+  //   path: '/:pathMatch(.*)',
+  //   name: '404',
+  //   component: () => import('@/views/exception/404.vue'),
+  // },
 ];
 
 // 3. 创建路由实例并传递 `routes` 配置
@@ -82,9 +116,9 @@ router.beforeEach(async to => {
     const userInfo = localStorage.getItem('userInfo')
     if (userInfo) {
       await userStore.login(JSON.parse(userInfo))
-      return { 
-        path: to.fullPath, 
-        replace: true 
+      return {
+        path: to.fullPath,
+        replace: true
       }
     }
   }

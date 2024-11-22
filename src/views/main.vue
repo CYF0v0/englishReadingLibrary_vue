@@ -1,11 +1,18 @@
 <template>
-  <div v-if="!isLogin">
-    暂未登录 <a href="/">去登录</a>
-  </div>
-  <div v-else>
-      欢迎使用后台管理系统，{{ loginInfo.type }} {{ loginInfo.username }}
-  </div>
+<!--  <div v-if="!isLogin">-->
+<!--    暂未登录 <a href="/">去登录</a>-->
+<!--  </div>-->
+<!--  <div v-else>-->
+<!--      欢迎使用后台管理系统，{{ loginInfo.type }} {{ loginInfo.username }}-->
+<!--  </div>-->
+  <el-descriptions title="欢迎来到中小学生课外英语阅读馆" ></el-descriptions>
 </template>
+
+<style>
+.el-descriptions__title{
+  margin: 0 auto;
+}
+</style>
 
 <script setup>
 import { ref } from 'vue'

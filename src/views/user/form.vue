@@ -9,6 +9,9 @@
       <el-form-item label="姓名" prop="name">
         <el-input v-model="formInfo.name" placeholder="姓名" />
       </el-form-item>
+      <el-form-item label="权限" prop="character">
+        <el-input v-model="formInfo.character" placeholder="权限" />
+      </el-form-item>
       <el-form-item label="性别">
         <el-radio-group v-model="formInfo.sex">
           <el-radio label="男">男</el-radio>
@@ -48,6 +51,7 @@ const props = defineProps({
       sex: '',
       mobile: '',
       createdAt: '',
+      character: '',
     }
   },
   formIndex: {
@@ -89,5 +93,8 @@ const handleOk = () => {
       return false
     }
   })
+}
+function refresh(){
+  this.$router.go(0)
 }
 </script>
