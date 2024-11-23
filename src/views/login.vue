@@ -36,6 +36,11 @@ const handleSelection = (value: string) => {
 };
 
 const handleCreateAccount = async () => {
+  if (!registerDate.value.account || !registerDate.value.password) {
+    ElMessage.error('账户和密码不能为空');
+    return;
+  }
+
   roleStore.setAccountInfo(registerDate.value.username, registerDate.value.account, registerDate.value.password);
   try {
     const response = await axios.post('http://localhost:8080/api/register', registerDate.value, {
@@ -49,7 +54,6 @@ const handleCreateAccount = async () => {
       // 你可以在这里添加其他逻辑，例如重定向到登录页面
       userStore.login(data.data)
       await router.push('/main')
-
     } else {
       ElMessage.error(data.message);
     }
