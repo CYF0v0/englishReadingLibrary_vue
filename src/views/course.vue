@@ -156,7 +156,7 @@ function refresh() {
             <el-tag size="small">{{ course.charge }}</el-tag>
           </el-descriptions-item>
           <el-descriptions-item label="状态">
-            <el-tag size="small">{{ course.status === 0 ? '未开课' : '已开课' }}</el-tag>
+            <el-tag size="small">{{ course.status == 0 ? '未开课' : '已开课' }}</el-tag>
           </el-descriptions-item>
           <el-descriptions-item label="上课网站">
             No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province
